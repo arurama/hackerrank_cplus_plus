@@ -1,0 +1,107 @@
+// parse.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include "pch.h"
+#include <iostream>
+#include <stdio.h>
+#include <string>
+
+using namespace std;
+
+typedef struct {
+	string name;
+	string anotation;
+	string value;
+	int open;
+
+}parse;
+
+parse data(string line) {
+	parse retval;
+	if (line[0] == '<') {
+		if (line[1] != '/') {
+			int locate_name_st = 1;
+			int locate_name_en = line.find(' ', locate_name_st + 1);
+			retval.name = line.substr(locate_name_st, locate_name_en-1);
+
+			int anotation_st = line.find(' ', locate_name_en);
+			int anotation_en = line.find(' ', anotation_st+ 1);
+			int anotation_offset = anotation_en - anotation_st- 1;
+			retval.anotation = line.substr(anotation_st+1, anotation_offset);;
+
+
+			int locate_value_st = line.find('\"');
+			int locate_value_end = line.find('\>"', locate_value_st + 1);
+			int offset =  locate_value_end - locate_value_st - 1;
+			retval.value = line.substr(locate_value_st + 1, offset);
+
+		
+
+		}
+		else {
+			int locate_name_en = line.find('>', 2);
+			retval.name = line.substr(2, locate_name_en - 2);
+			retval.open = 1;
+
+		}
+			
+
+			return retval;
+
+		}
+	}
+
+
+class object {
+private:
+	string obj_name;
+	string anotation;
+	string value;
+	int open;
+public:
+	object() {}
+	object(string p_data) {
+		parse n_data;
+		n_data = data(p_data);
+		obj_name = n_data.name;
+		anotation = n_data.anotation;
+		value = n_data.value;
+		open = n_data.open;
+			}
+	string get_value() {
+		return value;
+	}
+};
+
+
+int main()
+{
+ 	int obj_size, query_size;
+	cin >> obj_size >> query_size;
+	string data_input;
+
+	for (int i = 0; i < obj_size; i++) {
+		getline(cin, data_input);
+
+		object tag1;
+
+
+
+	}
+
+	//cin >> da;
+	
+	
+
+}
+
+// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
+// Debug program: F5 or Debug > Start Debugging menu
+
+// Tips for Getting Started: 
+//   1. Use the Solution Explorer window to add/manage files
+//   2. Use the Team Explorer window to connect to source control
+//   3. Use the Output window to see build output and other messages
+//   4. Use the Error List window to view errors
+//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
+//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
