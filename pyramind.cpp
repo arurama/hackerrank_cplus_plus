@@ -27,25 +27,13 @@ string sp(int m){
     return data;
 }
 
-
 int main()
 {
     string input="12345";
     string spdata,rev_input;
-    int si=input.size();
-  //  spdata= sp(5);
-    rev_input=reverse(input);
-  //  cout<<rev_input;
     
-   // for (int i=0;i<si;i++){
-   int mo=0;
-        for(int j=si;j>0;j--){
-            
-            spdata= sp(j);
-            cout<<spdata;
-            cout<<input.substr(0, mo);//+reverse(input.substr(0, mo));
-            cout<<input[mo]<<reverse(input.substr(0, mo))<<"\n";
-            mo++;
+        for(int j=input.size(), mo = 0;j>0;j--,mo++){
+            cout<<sp(j)<<input.substr(0, mo)<<input[mo]<<reverse(input.substr(0, mo))<<"\n";
         }
         
 //    }
